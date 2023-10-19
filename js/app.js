@@ -1,9 +1,9 @@
-const loadData = async () =>{
+const loadData = async (btnH) =>{
     const url =`https://openapi.programming-hero.com/api/ai/tools`;
     try{
         const res = await fetch(url);
         const items=await res.json();
-        displayLoadData(items.data.tools);
+        displayLoadData(items.data.tools,btnH);
         
     }
     catch(error){
@@ -11,11 +11,14 @@ const loadData = async () =>{
     }
 }
 
-const displayLoadData= items =>{
+const displayLoadData= (items,btnH) =>{
     console.log(items);
     const rowContainer =document.getElementById('row-container');
     rowContainer.innerHTML='';
-    items=items.slice(0,6);
+    if (btnH !==true) {
+        items=items.slice(0,6);
+    }
+    
     items.forEach(item =>{
         const colDiv=document.createElement('div');
         colDiv.classList.add('col');
@@ -144,4 +147,8 @@ const showModalDetails = (dataId) =>{
 
 }
 
-loadData();
+document.getElementById('show-all-btn').addEventListener('click',function(){
+    loadData(true);
+});
+
+ loadData();
