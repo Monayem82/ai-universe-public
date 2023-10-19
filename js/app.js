@@ -13,10 +13,13 @@ const loadData = async (btnH) =>{
 
 const displayLoadData= (items,btnH) =>{
     console.log(items);
+    const showBtn=document.getElementById('show-all-btn');
     const rowContainer =document.getElementById('row-container');
     rowContainer.innerHTML='';
     if (btnH !==true) {
         items=items.slice(0,6);
+    }else{
+        showBtn.classList.add('d-none');
     }
     
     items.forEach(item =>{
